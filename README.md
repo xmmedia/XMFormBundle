@@ -1,5 +1,5 @@
-# XMFormBunlde
-[@todo]
+# XMFormBundle
+A few helpers to make processing (creating, saving, errors, etc) forms simpler.
 
 ## Installation
 
