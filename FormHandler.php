@@ -153,7 +153,6 @@ class FormHandler
      * Creates a flat-ish array of the errors on the form,
      * keyed by their field name.
      * May contain nested arrays of errors if the form has child forms.
-     * @todo
      *
      * @param FormInterface $form
      *
