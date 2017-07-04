@@ -40,14 +40,53 @@ class AppKernel extends Kernel
 
 ### Step 3: Add Service Alias
 
-[@todo ?]
-
 Adding the following will make the call to the service shorter:
 
 ```
-flash_handler: '@xm_flash.handler'
+form_handler: '@xm_form.handler'
 ```
 
 ## Usage
 
-[@todo]
+### Get the form handler
+
+```
+$formHandler = $this->get('form_handler');
+```
+
+### Create the form
+
+```
+$form = $formHandler->getForm(
+    EntityFormType::class,
+    $entity,
+    $request
+);
+```
+
+### Process form & save entity
+
+```
+if ($formHandler->processForm($form, $entity, '[entity name]')) {
+    // entity valid and saved successfully, redirect
+}
+```
+
+### Retrieve validation errors/messages as an array
+
+```
+$formHandler->getFormErrors($form)
+```
+
+This will return an array of the errors in the format of:
+
+```
+array(
+    'field_name' => array(
+        'Message 1',
+        'Message 2',
+        ...
+    ),
+    ...
+)
+```
