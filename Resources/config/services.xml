@@ -3,16 +3,12 @@
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-    
-    <parameters>
-        <parameter key="em">@doctrine.orm.entity_manager</parameter>
-    </parameters>
 
     <services>
 
         <service id="xm_form.handler" class="%xm_form.handler%">
             <argument key="$formFactory" type="service" id="form.factory" />
-            <argument key="$em" type="service" id="%em%" />
+            <argument key="$em" type="service" id="doctrine.orm.entity_manager" />
             <argument key="$router" type="service" id="router" />
             <argument key="$flashHandler" type="service" id="xm_flash.handler" />
         </service>

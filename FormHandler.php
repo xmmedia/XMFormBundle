@@ -39,7 +39,7 @@ class FormHandler
      * @param Request $request   The current request
      * @param array   $options   Array of options
      *
-     * @return Form
+     * @return Form|FormInterface
      */
     public function getForm(
         $formClass,
@@ -47,7 +47,7 @@ class FormHandler
         Request $request,
         array $options = []
     ) {
-        $formOptions = $this->getFormOptions($entity, $request, $options);
+        $formOptions = $this->buildFormOptions($entity, $request, $options);
 
         $form = $this->createForm($formClass, $entity, $formOptions);
         $form->handleRequest($request);
@@ -61,9 +61,10 @@ class FormHandler
      * @param object  $entity  The entity
      * @param Request $request The current request
      * @param array   $options Array of options
+     *                         
      * @return array
      */
-    public function getFormOptions(
+    public function buildFormOptions(
         $entity,
         Request $request,
         array $options = []
@@ -108,6 +109,7 @@ class FormHandler
      * @param object $entity The entity
      * @param string $userEntityName The name of entity to use in flash messages
      * @param \Doctrine\Common\Persistence\ObjectManager $em
+     *
      * @return bool
      */
     public function processForm(
@@ -153,10 +155,11 @@ class FormHandler
      * May contain nested arrays of errors if the form has child forms.
      * @todo
      *
-     * @param Form $form
+     * @param FormInterface $form
+     *
      * @return array
      */
-    public function getFormErrors(Form $form)
+    public function getFormErrors(FormInterface $form)
     {
         $errors = [];
 
