@@ -1,6 +1,6 @@
 {
     "name": "xm/form-bundle",
-    "description": "[@todo]",
+    "description": "A few helpers to make processing (creating, saving, errors, etc) forms simpler.",
     "type": "symfony-bundle",
     "homepage": "https://github.com/xmmedia/XMFormBundle",
     "license": "MIT",
