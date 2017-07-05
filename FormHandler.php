@@ -7,7 +7,6 @@ use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use XM\FlashBundle\FlashHandler;
 
@@ -69,13 +68,6 @@ class FormHandler
         Request $request,
         array $options = []
     ) {
-        $resolver = new OptionsResolver();
-        $resolver->setDefaults([
-            'action'            => null,
-            'method'            => 'POST',
-            'validation_groups' => null,
-        ]);
-
         $newEntity = (null === $entity->getId());
 
         if (!array_key_exists('method', $options)) {
@@ -95,7 +87,7 @@ class FormHandler
             }
         }
 
-        return $resolver->resolve($options);
+        return $options;
     }
 
     /**
