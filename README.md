@@ -77,7 +77,7 @@ if ($formHandler->processForm($form, $entity, '[entity name]')) {
 This is useful when passing the validation messages to JS through JSON.
 
 ```
-FormErrors::flatten($form)
+$errors = FormErrors::flatten($form)
 ```
 
 This will return an array of the errors in the format of:
