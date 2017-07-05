@@ -142,34 +142,6 @@ class FormHandler
     }
 
     /**
-     * Creates a flat-ish array of the errors on the form,
-     * keyed by their field name.
-     * May contain nested arrays of errors if the form has child forms.
-     *
-     * @param FormInterface $form
-     *
-     * @return array
-     */
-    public function getFormErrors(FormInterface $form)
-    {
-        $errors = [];
-
-        foreach ($form->getErrors() as $error) {
-            $errors[] = $error->getMessage();
-        }
-
-        foreach ($form->all() as $childForm) {
-            if ($childForm instanceof FormInterface) {
-                if ($childErrors = $this->getFormErrors($childForm)) {
-                    $errors[$childForm->getName()] = $childErrors;
-                }
-            }
-        }
-
-        return $errors;
-    }
-
-    /**
      * Creates and returns a Form instance from the type of the form.
      *
      * @param string $type    The fully qualified class name of the form type

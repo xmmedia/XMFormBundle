@@ -75,16 +75,19 @@ if ($formHandler->processForm($form, $entity, '[entity name]')) {
 ### Retrieve validation errors/messages as an array
 
 ```
-$formHandler->getFormErrors($form)
+FormErrors::flatten($form)
 ```
 
 This will return an array of the errors in the format of:
 
 ```
 array(
+    0 => array(
+        'Global Error 1',
+    ),
     'field_name' => array(
-        'Message 1',
-        'Message 2',
+        'Field Error 1',
+        'Field Error 2',
         ...
     ),
     ...
