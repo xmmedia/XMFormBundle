@@ -3,7 +3,6 @@
 namespace XM\FormBundle;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,7 +37,7 @@ class FormHandler
      * @param Request $request   The current request
      * @param array   $options   Array of options
      *
-     * @return Form|FormInterface
+     * @return \Symfony\Component\Form\FormInterface
      */
     public function getForm(
         $formClass,
@@ -97,7 +96,7 @@ class FormHandler
      * Returns true if everything has been saved.
      * Returns false if there was an error and the form should be displayed again.
      *
-     * @param Form $form The form.
+     * @param FormInterface $form The form.
      * @param object $entity The entity
      * @param string $userEntityName The name of entity to use in flash messages
      * @param \Doctrine\Common\Persistence\ObjectManager $em
@@ -105,7 +104,7 @@ class FormHandler
      * @return bool
      */
     public function processForm(
-        Form $form,
+        FormInterface $form,
         $entity,
         $userEntityName,
         ObjectManager $em = null
@@ -148,7 +147,7 @@ class FormHandler
      * @param mixed  $data    The initial data for the form
      * @param array  $options Options for the form
      *
-     * @return Form|FormInterface
+     * @return \Symfony\Component\Form\FormInterface
      */
     protected function createForm($type, $data, $options)
     {
