@@ -9,7 +9,7 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
-use XM\FlashBundle\FlashHandler;
+use XM\FlashBundle\FlashHandlerInterface;
 use XM\FormBundle\FormHandler;
 use XM\FormBundle\FormMessages;
 
@@ -197,7 +197,7 @@ class FormHandlerTest extends \PHPUnit_Framework_TestCase
             $mock->shouldReceive('flush', 1);
         });
 
-        $flashHandler = \Mockery::mock(FlashHandler::class, function ($mock) {
+        $flashHandler = \Mockery::mock(FlashHandlerInterface::class, function ($mock) {
             /** @var $mock \Mockery\MockInterface */
             $mock->shouldReceive('add', 1)
                 ->withArgs(['success', FormMessages::CREATED, ['%name%' => 'Record']]);
@@ -233,7 +233,7 @@ class FormHandlerTest extends \PHPUnit_Framework_TestCase
             $mock->shouldReceive('flush', 1);
         });
 
-        $flashHandler = \Mockery::mock(FlashHandler::class, function ($mock) {
+        $flashHandler = \Mockery::mock(FlashHandlerInterface::class, function ($mock) {
             /** @var $mock \Mockery\MockInterface */
             $mock->shouldReceive('add', 1)
                 ->withArgs(['success', FormMessages::UPDATED, ['%name%' => 'Record']]);
@@ -260,7 +260,7 @@ class FormHandlerTest extends \PHPUnit_Framework_TestCase
 
         $entity = \Mockery::mock(\StdClass::class);
 
-        $flashHandler = \Mockery::mock(FlashHandler::class, function ($mock) {
+        $flashHandler = \Mockery::mock(FlashHandlerInterface::class, function ($mock) {
             /** @var $mock \Mockery\MockInterface */
             $mock->shouldReceive('add', 1)
                 ->withArgs(['warning', FormMessages::VALIDATION_ERRORS]);
@@ -296,7 +296,7 @@ class FormHandlerTest extends \PHPUnit_Framework_TestCase
      * @param FormFactoryInterface $formFactory
      * @param ObjectManager $em
      * @param Router $router
-     * @param FlashHandler $flashHandler
+     * @param FlashHandlerInterface $flashHandler
      * @return FormHandler
      */
     protected function getFormHandler($formFactory = null, $em = null, $router = null, $flashHandler = null)
@@ -311,7 +311,7 @@ class FormHandlerTest extends \PHPUnit_Framework_TestCase
             $router = \Mockery::mock(Router::class);
         }
         if ($flashHandler === null) {
-            $flashHandler = \Mockery::mock(FlashHandler::class);
+            $flashHandler = \Mockery::mock(FlashHandlerInterface::class);
         }
 
         return new FormHandler($formFactory, $em, $router, $flashHandler);

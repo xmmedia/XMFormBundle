@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
-use XM\FlashBundle\FlashHandler;
+use XM\FlashBundle\FlashHandlerInterface;
 
 class FormHandler
 {
@@ -20,7 +20,7 @@ class FormHandler
         FormFactoryInterface $formFactory,
         ObjectManager $em,
         Router $router,
-        FlashHandler $flashHandler
+        FlashHandlerInterface $flashHandler
     ) {
         $this->formFactory = $formFactory;
         $this->em = $em;
