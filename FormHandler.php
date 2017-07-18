@@ -11,10 +11,10 @@ use XM\FlashBundle\FlashHandlerInterface;
 
 class FormHandler
 {
-    private $formFactory;
-    private $em;
-    private $router;
-    private $flashHandler;
+    protected $formFactory;
+    protected $em;
+    protected $router;
+    protected $flashHandler;
 
     public function __construct(
         FormFactoryInterface $formFactory,
