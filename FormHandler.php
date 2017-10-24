@@ -6,7 +6,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Routing\Router;
+use Symfony\Component\Routing\RouterInterface;
 use XM\FlashBundle\FlashHandlerInterface;
 
 class FormHandler
@@ -19,7 +19,7 @@ class FormHandler
     public function __construct(
         FormFactoryInterface $formFactory,
         ObjectManager $em,
-        Router $router,
+        RouterInterface $router,
         FlashHandlerInterface $flashHandler
     ) {
         $this->formFactory = $formFactory;
